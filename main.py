@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(layout="wide")
 
@@ -14,3 +15,19 @@ with col2:
     Nanyang Technological University Singapore. I'm widly enthusiatic about Data Engineering.
     """
     st.info(content)
+
+content2 = """
+Below you can find my personal projects I have developed. Feel Free to contact me.
+"""
+st.write(content2)
+
+col3, col4 = st.columns(2)
+df = pd.read_csv("data.csv", sep=";")
+
+with col3:
+    for index, row in df[:10].iterrows():
+        st.header(row["title"])
+
+with col4:
+    for index, row in df[10:].iterrows():
+        st.header(row["title"])
